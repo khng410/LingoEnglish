@@ -6,4 +6,8 @@
     <color name="white">#FFFFFF</color>
     <color name="colorPrimaryDark">#1F29A4</color>
     <color name="colorAccent">#FF9800</color> <!-- Added for Splash screen -->
+    <color name="colorEducation">#42A5F5</color> <!-- Xanh dương cho Giáo dục -->
+    <color name="colorTech">#AB47BC</color>      <!-- Tím cho Công nghệ -->
+    <color name="colorTravel">#66BB6A</color>    <!-- Xanh lá cho Du lịch -->
+    <color name="colorJob">#EF5350</color>       <!-- Đỏ hồng cho Việc làm -->
 </resources>

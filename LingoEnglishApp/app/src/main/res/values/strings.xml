@@ -2,4 +2,6 @@
     <string name="app_name">LingoEnglishApp</string>
     <string name="lingo_ai">Lingo</string>
     <string name="corgi_tutor">Your Corgi Tutor</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/navigation_home"> <!-- Màn hình mặc định hiện ra đầu tiên là Home -->
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="thick2.edu.nguyengiakhanh.lingoenglish.MainActivity"
-        android:label="MainActivity" />
+    <!-- Màn hình Home (Phải khớp ID với bottom_nav_menu) -->
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <!-- Màn hình Leaderboard -->
+    <fragment
+        android:id="@+id/navigation_leaderboard"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.LeaderboardFragment"
+        android:label="Leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
+
+    <!-- Màn hình Profile -->
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <!-- Màn hình Chọn Chế độ (1 hay 4 kỹ năng) -->
+    <fragment
+        android:id="@+id/modeSelectionFragment"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.ModeSelectionFragment"
+        android:label="Select Mode"
+        tools:layout="@layout/fragment_mode_selection" />
+
 </navigation>
