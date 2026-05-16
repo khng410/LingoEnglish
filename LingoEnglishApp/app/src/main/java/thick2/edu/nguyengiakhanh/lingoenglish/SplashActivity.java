@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_splash);
 
-        // Tạo delay 10 giây (10000 milliseconds) rồi chuyển sang MainActivity (Màn hình chính)
+        // Tạo delay 5 giây (5000 milliseconds) rồi chuyển sang MainActivity (Màn hình chính)
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -30,6 +30,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Đóng SplashActivity để người dùng không bấm nút Back quay lại được
             }
-        }, 10000);
+        }, 5000);
     }
 }

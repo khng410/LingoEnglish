@@ -31,5 +31,11 @@
         android:name="thick2.edu.nguyengiakhanh.lingoenglish.ModeSelectionFragment"
         android:label="Select Mode"
         tools:layout="@layout/fragment_mode_selection" />
+    <!-- Màn hình Nghe -->
+    <fragment
+        android:id="@+id/listeningFragment"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.ListeningFragment"
+        android:label="Listening"
+        tools:layout="@layout/fragment_listening" />
 
 </navigation>

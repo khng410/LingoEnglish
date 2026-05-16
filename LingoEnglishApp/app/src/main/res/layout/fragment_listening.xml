@@ -1,0 +1,187 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <!-- Thanh Header chứa nút Back và Tiêu đề -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="@color/colorTextPrimary" />
+
+        <TextView
+            android:id="@+id/tvLessonTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Podcast: At the Coffee Shop"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Nút bật/tắt Phụ đề (Đưa lên trên ScrollView để dễ bấm) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowTranscript"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:text="Xem phụ đề"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="2dp" />
+
+    <!-- Khu vực hiển thị Ảnh minh họa, Phụ đề VÀ Bài tập (Có thể cuộn) -->
+    <ScrollView
+        android:id="@+id/scrollViewTranscript"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="20dp"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp"
+        app:layout_constraintTop_toBottomOf="@id/btnShowTranscript"
+        app:layout_constraintBottom_toTopOf="@id/playerLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <!-- Ảnh minh họa bài nghe -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardThumbnail"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp">
+
+                <ImageView
+                    android:id="@+id/imgThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_education"
+                    android:background="@color/colorPrimary" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Text Phụ đề (Mặc định ẩn) -->
+            <TextView
+                android:id="@+id/tvTranscript"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:lineSpacingExtra="8dp"
+                android:text="Barista: Hi, what can I get for you today?\nCustomer: I'd like a medium iced latte, please..."
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <!-- KHU VỰC MỚI: BÀI TẬP TRẮC NGHIỆM -->
+            <LinearLayout
+                android:id="@+id/quizLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_bottom_sheet"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question: What does the customer want to order?"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Nơi chứa 4 đáp án -->
+                <RadioGroup
+                    android:id="@+id/radioGroupAnswers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                    <RadioButton android:id="@+id/rbA" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="A. A hot Americano" android:textSize="16sp" android:layout_marginBottom="8dp"/>
+                    <RadioButton android:id="@+id/rbB" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="B. A medium iced latte" android:textSize="16sp" android:layout_marginBottom="8dp"/>
+                    <RadioButton android:id="@+id/rbC" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="C. A green tea" android:textSize="16sp" android:layout_marginBottom="8dp"/>
+                    <RadioButton android:id="@+id/rbD" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="D. A small espresso" android:textSize="16sp" />
+                </RadioGroup>
+
+                <!-- Nút Nộp Bài -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmitQuiz"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Nộp Bài"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/colorPrimary" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Trình phát Audio kiểu Spotify (Cố định dưới cùng) -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/playerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView android:id="@+id/tvCurrentTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00" android:textSize="12sp" />
+                <SeekBar android:id="@+id/seekBarAudio" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:progressTint="@color/colorPrimary" android:thumbTint="@color/colorPrimaryDark" />
+                <TextView android:id="@+id/tvTotalTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="03:45" android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView android:id="@+id/btnRewind" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="24dp" android:src="@android:drawable/ic_media_rew" app:tint="@color/colorTextSecondary" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnPlayPause" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/ic_media_play" app:backgroundTint="@color/colorPrimary" app:elevation="4dp" app:tint="@color/white" />
+                <ImageView android:id="@+id/btnForward" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginStart="24dp" android:src="@android:drawable/ic_media_ff" app:tint="@color/colorTextSecondary" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

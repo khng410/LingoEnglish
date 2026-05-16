@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "332319323697",
+    "project_id": "lingoenglish-9c822",
+    "storage_bucket": "lingoenglish-9c822.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332319323697:android:44504fb748941a01c7c710",
+        "android_client_info": {
+          "package_name": "thick2.edu.nguyengiakhanh.lingoenglish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZEYJbn8VFhiuERNSu1IKQic3XukWOUZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

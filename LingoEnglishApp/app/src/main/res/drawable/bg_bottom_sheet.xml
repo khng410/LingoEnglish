@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Màu nền của cửa sổ trượt (trắng) -->
+    <solid android:color="#FFFFFF" />
+
+    <!-- Bo tròn 2 góc trên cùng -->
+    <corners
+        android:topLeftRadius="24dp"
+        android:topRightRadius="24dp" />
+
+</shape>
