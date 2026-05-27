@@ -17,7 +17,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class ModeSelectionFragment extends Fragment {
 
+
     private String topicName = "";
+    private String topicId = "topic_education"; // Thêm biến lưu mã ID chủ đề cho Firestore
 
     @Nullable
     @Override
@@ -29,9 +31,13 @@ public class ModeSelectionFragment extends Fragment {
         CardView cardComboSkill = view.findViewById(R.id.cardComboSkill);
         ImageView btnBack = view.findViewById(R.id.btnBack);
 
+
         if (getArguments() != null) {
             topicName = getArguments().getString("SELECTED_TOPIC");
             tvSelectedTopic.setText("Chủ đề: " + topicName);
+
+            // Tự động chuyển đổi tên chủ đề thành ID chuẩn
+            topicId = getTopicIdFromName(topicName);
         }
 
         btnBack.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
@@ -61,8 +67,10 @@ public class ModeSelectionFragment extends Fragment {
             bottomSheetDialog.dismiss();
             // Chuyển sang màn hình Nghe kèm theo tên Chủ đề
             Bundle bundle = new Bundle();
+            bundle.putString("TOPIC_ID", topicId);
             bundle.putString("SELECTED_TOPIC", topicName);
             navController.navigate(R.id.listeningFragment, bundle);
+
         });
 
         sheetView.findViewById(R.id.btnRead).setOnClickListener(v -> {
@@ -72,5 +80,25 @@ public class ModeSelectionFragment extends Fragment {
         });
 
         bottomSheetDialog.show();
+    }
+    // HÀM MỚI BỔ SUNG: Ánh xạ tên hiển thị sang ID của Firestore
+    private String getTopicIdFromName(String name) {
+        if (name == null) return "topic_education";
+
+        String lowerName = name.toLowerCase();
+
+        // Kiểm tra xem tên chủ đề có chứa các từ khóa tương ứng không
+        if (lowerName.contains("giáo dục") || lowerName.contains("education")) {
+            return "topic_education";
+        } else if (lowerName.contains("công việc") || lowerName.contains("job") || lowerName.contains("việc làm")) {
+            return "topic_jobs";
+        } else if (lowerName.contains("công nghệ") || lowerName.contains("tech")) {
+            return "topic_tech";
+        } else if (lowerName.contains("du lịch") || lowerName.contains("travel")) {
+            return "topic_travel";
+        }
+
+        // Trả về mặc định nếu không khớp
+        return "topic_education";
     }
 }
