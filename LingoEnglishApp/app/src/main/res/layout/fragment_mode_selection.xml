@@ -66,13 +66,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tập trung chuyên sâu (Nghe, Nói, Đọc, hoặc Viết)"
+                android:text="Tập trung chuyên sâu (Nghe hoặc Đọc)"
                 android:textColor="#E1F5FE"
                 android:textSize="14sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Nút Combo 4 Kỹ Năng -->
+    <!-- Nút Combo 2 Kỹ Năng -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardComboSkill"
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Combo 4 Kỹ Năng"
+                android:text="2 Kỹ Năng"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold" />

@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Chọn một kỹ năng"
+        android:text="Choose a skill to practice!"
         android:textAlignment="center"
         android:textColor="@color/colorTextPrimary"
         android:textSize="20sp"
@@ -41,22 +41,10 @@
             android:layout_margin="8dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:text="Nghe (Listening)"
+            android:text="Listening"
             app:cornerRadius="12dp"
             app:strokeColor="#29B6F6" />
 
-        <!-- Nút Speaking -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSpeak"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Nói (Speaking)"
-            app:cornerRadius="12dp"
-            app:strokeColor="#AB47BC" />
 
         <!-- Nút Reading -->
         <com.google.android.material.button.MaterialButton
@@ -67,22 +55,11 @@
             android:layout_margin="8dp"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:text="Đọc (Reading)"
+            android:text="Reading"
             app:cornerRadius="12dp"
             app:strokeColor="#66BB6A" />
 
-        <!-- Nút Writing -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnWrite"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:text="Viết (Writing)"
-            app:cornerRadius="12dp"
-            app:strokeColor="#EF5350" />
+
     </GridLayout>
 
 </LinearLayout>
