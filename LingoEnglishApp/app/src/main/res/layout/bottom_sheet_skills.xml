@@ -5,61 +5,75 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_bottom_sheet"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:gravity="center_horizontal">
 
     <!-- Thanh ngang nhỏ ở trên cùng (Handle) -->
     <View
         android:layout_width="40dp"
         android:layout_height="4dp"
-        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:background="#E0E0E0" />
+
+    <!-- Chú chó Corgi sinh động -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="8dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/corgi_animation5" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Choose a skill to practice!"
+        android:layout_marginBottom="24dp"
+        android:text="What skill you want to learn?"
         android:textAlignment="center"
         android:textColor="@color/colorTextPrimary"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <!-- Lưới 2x2 cho 4 kỹ năng -->
-    <GridLayout
+    <!-- Khu vực 2 nút To đùng -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="2">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <!-- Nút Listening -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnListen"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+            android:layout_height="100dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#16D91C"
             android:text="Listening"
-            app:cornerRadius="12dp"
-            app:strokeColor="#29B6F6" />
-
+            android:textSize="20sp"
+            app:cornerRadius="16dp"
+            android:textColor="#C71111"
+            app:iconGravity="top"
+            app:strokeColor="#29B6F6"
+            app:strokeWidth="2dp" />
 
         <!-- Nút Reading -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRead"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
+            android:layout_height="100dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
             android:text="Reading"
-            app:cornerRadius="12dp"
-            app:strokeColor="#66BB6A" />
-
-
-    </GridLayout>
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:backgroundTint="#D71310"
+            app:cornerRadius="16dp"
+            app:iconGravity="top"
+            app:strokeColor="#66BB6A"
+            app:strokeWidth="2dp" />
+    </LinearLayout>
 
 </LinearLayout>

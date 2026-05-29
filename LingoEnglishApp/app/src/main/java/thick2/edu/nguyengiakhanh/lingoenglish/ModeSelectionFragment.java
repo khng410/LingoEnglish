@@ -75,8 +75,11 @@ public class ModeSelectionFragment extends Fragment {
 
         sheetView.findViewById(R.id.btnRead).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
-            // Tạm thời để Toast cho phần Đọc vì ta chưa tạo ReadingFragment
-            Toast.makeText(getContext(), "Đang chuẩn bị giao diện Đọc...", Toast.LENGTH_SHORT).show();
+            // Chuyển sang màn hình Đọc kèm theo ID Chủ đề
+            Bundle bundle = new Bundle();
+            bundle.putString("TOPIC_ID", topicId);
+            bundle.putString("SELECTED_TOPIC", topicName);
+            navController.navigate(R.id.readingFragment, bundle);
         });
 
         bottomSheetDialog.show();

@@ -43,5 +43,11 @@
         android:name="thick2.edu.nguyengiakhanh.lingoenglish.ResultFragment"
         android:label="Result"
         tools:layout="@layout/fragment_result" />
+    <!-- Màn hình Đọc (Reading) -->
+    <fragment
+        android:id="@+id/readingFragment"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.ReadingFragment"
+        android:label="Reading"
+        tools:layout="@layout/fragment_reading" />
 
 </navigation>
