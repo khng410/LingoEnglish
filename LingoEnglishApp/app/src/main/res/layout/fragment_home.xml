@@ -1,188 +1,273 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:clipToPadding="false">
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Lời chào (Đã xóa thanh XP và Lửa) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="12dp">
 
-        <!-- Câu chào mừng -->
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hi there! 👋"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="24dp"
             android:text="What do you want to learn today?"
             android:textColor="@color/colorTextSecondary"
             android:textSize="16sp" />
-
-        <!-- HÀNG 1: GIÁO DỤC & CÔNG NGHỆ -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- Nút Giáo dục (CardView bo góc 16dp, có đổ bóng) -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardEducation"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorEducation"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_education"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Education"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Nút Công nghệ -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardTech"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorTech"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_tech"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Technology"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <!-- HÀNG 2: DU LỊCH & VIỆC LÀM -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
-            <!-- Nút Du lịch -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardTravel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorTravel"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_travel"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Travel"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Nút Việc làm -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardJob"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/colorJob"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:src="@drawable/ic_job"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="Jobs"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
     </LinearLayout>
-</ScrollView>
+
+    <!-- Banner Linh vật Corgi cổ vũ -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Tái sử dụng file Lottie Corgi -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/corgi_animation3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Woof! You're doing great!"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Choose a topic below to start your adventure!"
+                    android:textColor="#FFF3E0"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Lưới Chủ đề (Grid 2x2) mang phong cách Game -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:weightSum="2">
+
+        <!-- Nút Giáo dục -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardEducation"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/colorEducation"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_education"
+                        app:tint="@color/colorEducation" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Education"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Nút Công nghệ -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTech"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/colorTech"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_tech"
+                        app:tint="@color/colorTech" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Technology"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <!-- HÀNG 2: DU LỊCH & VIỆC LÀM -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:weightSum="2">
+
+        <!-- Nút Du lịch -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardTravel"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/colorTravel"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_travel"
+                        app:tint="@color/colorTravel" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Travel"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Nút Việc làm -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardJob"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/colorJob"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="28dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_job"
+                        app:tint="@color/colorJob" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Jobs"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</LinearLayout>

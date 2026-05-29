@@ -34,7 +34,7 @@ public class ModeSelectionFragment extends Fragment {
 
         if (getArguments() != null) {
             topicName = getArguments().getString("SELECTED_TOPIC");
-            tvSelectedTopic.setText("Chủ đề: " + topicName);
+            tvSelectedTopic.setText("Topic: " + topicName);
 
             // Tự động chuyển đổi tên chủ đề thành ID chuẩn
             topicId = getTopicIdFromName(topicName);

@@ -106,6 +106,19 @@ public class ListeningFragment extends Fragment {
             topicId = getArguments().getString("TOPIC_ID");
         }
 
+        // ==========================================
+        // TỰ ĐỘNG THAY ĐỔI HÌNH ẢNH THEO CHỦ ĐỀ
+        // ==========================================
+        if (topicId.equals("topic_tech")) {
+            imgThumbnail.setImageResource(R.drawable.tech_img); // Bạn có thể thay "ic_tech" bằng file ảnh tĩnh nếu muốn
+        } else if (topicId.equals("topic_travel")) {
+            imgThumbnail.setImageResource(R.drawable.travel_img);
+        } else if (topicId.equals("topic_jobs")) {
+            imgThumbnail.setImageResource(R.drawable.jobs_img);
+        } else {
+            imgThumbnail.setImageResource(R.drawable.education_img);
+        }
+
         // Gọi Firestore lấy đúng bài học tương ứng với chủ đề người dùng đã chọn
         loadLessonFromFirestore(topicId);
 
@@ -169,6 +182,18 @@ public class ListeningFragment extends Fragment {
                     // Cài đặt tổng thời gian cho SeekBar
                     seekBarAudio.setMax(mediaPlayer.getDuration());
                     tvTotalTime.setText(formatTime(mediaPlayer.getDuration()));
+
+                    // ==========================================
+                    // SỰ KIỆN KHI AUDIO HÁT XONG (RESET VỀ 0)
+                    // ==========================================
+                    mediaPlayer.setOnCompletionListener(mp -> {
+                        mp.seekTo(0); // Đưa bài nhạc về giây thứ 0
+                        seekBarAudio.setProgress(0); // Kéo thanh tua về 0
+                        tvCurrentTime.setText(formatTime(0)); // Đổi text thời gian về 00:00
+                        btnPlayPause.setImageResource(android.R.drawable.ic_media_play); // Đổi icon thành nút Play
+                        isPlaying = false;
+                        handler.removeCallbacks(updateSeekBarRunnable); // Dừng handler chạy ngầm
+                    });
 
                     // Lắng nghe sự kiện người dùng cầm tay kéo thả thanh tua nhạc
                     seekBarAudio.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -324,19 +349,16 @@ public class ListeningFragment extends Fragment {
 
     // Hiển thị hộp thoại kết quả học tập sử dụng AlertDialog mặc định
     private void showResultDialog() {
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Kết Quả Làm Bài")
-                .setMessage("Bạn đã hoàn thành chính xác " + score + "/" + questionList.size() + " câu hỏi bài nghe.")
-                .setPositiveButton("Đóng & Quay lại", (dialog, which) -> {
-                    dialog.dismiss();
-                    // Quay lại màn hình trước đó
-                    Navigation.findNavController(getView()).popBackStack();
-                })
-                .setCancelable(false) // Bắt buộc người dùng phải bấm nút Đóng mới thoát được
-                .show();
-
-        // Lưu điểm số lên Firestore (Lưu trữ lịch sử)
+        // Lưu điểm số lên Firestore trước khi chuyển trang
         saveScoreToFirestore();
+
+        // Gói điểm số và tổng số câu hỏi vào Bundle để gửi sang màn hình Kết quả
+        Bundle resultBundle = new Bundle();
+        resultBundle.putInt("SCORE", score);
+        resultBundle.putInt("TOTAL_QUESTIONS", questionList.size());
+
+        // Chuyển hướng sang ResultFragment
+        Navigation.findNavController(getView()).navigate(R.id.resultFragment, resultBundle);
     }
 
     // Lưu điểm của người dùng lên Cloud Firestore

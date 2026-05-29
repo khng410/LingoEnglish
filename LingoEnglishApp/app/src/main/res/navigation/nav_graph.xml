@@ -37,5 +37,11 @@
         android:name="thick2.edu.nguyengiakhanh.lingoenglish.ListeningFragment"
         android:label="Listening"
         tools:layout="@layout/fragment_listening" />
+    <!-- Màn hình Kết quả làm bài -->
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.ResultFragment"
+        android:label="Result"
+        tools:layout="@layout/fragment_result" />
 
 </navigation>

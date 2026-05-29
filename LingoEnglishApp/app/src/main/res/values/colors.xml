@@ -13,13 +13,13 @@
     <color name="black">#000000</color>
 
     <!-- Category/Topic Colors -->
-    <color name="colorEducation">#42A5F5</color> <!-- Xanh dương cho Giáo dục -->
-    <color name="colorTech">#AB47BC</color>      <!-- Tím cho Công nghệ -->
-    <color name="colorTravel">#66BB6A</color>    <!-- Xanh lá cho Du lịch -->
-    <color name="colorJob">#EF5350</color>       <!-- Đỏ hồng cho Việc làm -->
+    <color name="colorEducation">#0D7FDB</color> <!-- Xanh dương cho Giáo dục -->
+    <color name="colorTech">#9C0DB4</color>      <!-- Tím cho Công nghệ -->
+    <color name="colorTravel">#08DC13</color>    <!-- Xanh lá cho Du lịch -->
+    <color name="colorJob">#D31512</color>       <!-- Đỏ hồng cho Việc làm -->
 
     <!-- Status Colors -->
-    <color name="colorSuccess">#4CAF50</color>
-    <color name="colorError">#F44336</color>
-    <color name="colorWarning">#FFC107</color>
+    <color name="colorSuccess">#089E0C</color>
+    <color name="colorError">#9B160E</color>
+    <color name="colorWarning">#DBA70C</color>
 </resources>
