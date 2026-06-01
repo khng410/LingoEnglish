@@ -11,7 +11,7 @@
     <!-- Thanh ngang nhỏ ở trên cùng (Handle) -->
     <View
         android:layout_width="40dp"
-        android:layout_height="4dp"
+        android:layout_height="6dp"
         android:layout_marginBottom="16dp"
         android:background="#E0E0E0" />
 
@@ -51,7 +51,7 @@
             android:layout_weight="1"
             android:backgroundTint="#16D91C"
             android:text="Listening"
-            android:textSize="20sp"
+            android:textSize="14sp"
             app:cornerRadius="16dp"
             android:textColor="#C71111"
             app:iconGravity="top"
@@ -67,7 +67,7 @@
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:text="Reading"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:textColor="@color/colorPrimaryDark"
             android:backgroundTint="#D71310"
             app:cornerRadius="16dp"

@@ -27,6 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -258,12 +259,13 @@ public class ListeningFragment extends Fragment {
                         if (currentLesson != null) {
                             tvLessonTitle.setText(currentLesson.getTitle());
 
-                            // Hiển thị phụ đề tĩnh bình thường (Đã xóa setupTapToTranslate)
+                            // Chỉ hiển thị phụ đề tĩnh, đã gỡ bỏ hoàn toàn tính năng AI
                             tvTranscript.setText(currentLesson.getTranscript());
 
-                            // Load danh sách câu hỏi trắc nghiệm
                             if (currentLesson.getQuestions() != null && !currentLesson.getQuestions().isEmpty()) {
                                 questionList = currentLesson.getQuestions();
+                                // XÁO TRỘN CÂU HỎI TRƯỚC KHI HIỂN THỊ
+                                Collections.shuffle(questionList);
                                 currentQuestionIndex = 0;
                                 score = 0;
                                 displayQuestion(currentQuestionIndex);

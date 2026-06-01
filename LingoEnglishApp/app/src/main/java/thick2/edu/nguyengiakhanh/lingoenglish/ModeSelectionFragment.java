@@ -32,7 +32,7 @@ public class ModeSelectionFragment extends Fragment {
 
         if (getArguments() != null) {
             topicName = getArguments().getString("SELECTED_TOPIC");
-            tvSelectedTopic.setText("Chủ đề: " + topicName);
+            tvSelectedTopic.setText(topicName);
             topicId = getTopicIdFromName(topicName);
         }
 

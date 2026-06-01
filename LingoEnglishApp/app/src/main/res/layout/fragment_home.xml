@@ -93,7 +93,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardEducation"
             android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorEducation"
@@ -111,7 +111,7 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="28dp"
+                    app:cardCornerRadius="23dp"
                     app:cardElevation="0dp">
                     <ImageView
                         android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                     android:layout_marginTop="12dp"
                     android:text="Education"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -136,7 +136,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTech"
             android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorTech"
@@ -154,7 +154,7 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="28dp"
+                    app:cardCornerRadius="23dp"
                     app:cardElevation="0dp">
                     <ImageView
                         android:layout_width="match_parent"
@@ -167,10 +167,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="13dp"
                     android:text="Technology"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -188,7 +188,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTravel"
             android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorTravel"
@@ -206,7 +206,7 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="28dp"
+                    app:cardCornerRadius="23dp"
                     app:cardElevation="0dp">
                     <ImageView
                         android:layout_width="match_parent"
@@ -222,7 +222,7 @@
                     android:layout_marginTop="12dp"
                     android:text="Travel"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -231,7 +231,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardJob"
             android:layout_width="0dp"
-            android:layout_height="160dp"
+            android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
             app:cardBackgroundColor="@color/colorJob"
@@ -249,7 +249,7 @@
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="28dp"
+                    app:cardCornerRadius="23dp"
                     app:cardElevation="0dp">
                     <ImageView
                         android:layout_width="match_parent"
@@ -265,7 +265,7 @@
                     android:layout_marginTop="12dp"
                     android:text="Jobs"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
