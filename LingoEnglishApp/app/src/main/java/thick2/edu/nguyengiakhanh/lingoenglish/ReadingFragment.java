@@ -96,7 +96,7 @@ public class ReadingFragment extends Fragment {
                 currentTextSize += 2f;
                 tvReadingContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize);
             } else {
-                Toast.makeText(getContext(), "Chữ đã đạt kích thước tối đa", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Max size!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -105,7 +105,7 @@ public class ReadingFragment extends Fragment {
                 currentTextSize -= 2f;
                 tvReadingContent.setTextSize(TypedValue.COMPLEX_UNIT_SP, currentTextSize);
             } else {
-                Toast.makeText(getContext(), "Chữ đã đạt kích thước tối thiểu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Min size!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -221,7 +221,7 @@ public class ReadingFragment extends Fragment {
         Question question = questionList.get(index);
 
         if (tvQuestionText != null) {
-            tvQuestionText.setText("Câu " + (index + 1) + ": " + question.getQuestionText());
+            tvQuestionText.setText("Question " + (index + 1) + ": " + question.getQuestionText());
         }
         if (rbOptionA != null) rbOptionA.setText(question.getOptionA());
         if (rbOptionB != null) rbOptionB.setText(question.getOptionB());
@@ -231,9 +231,9 @@ public class ReadingFragment extends Fragment {
         radioGroupAnswers.clearCheck();
 
         if (index == questionList.size() - 1) {
-            btnSubmit.setText("Nộp bài & Hoàn thành");
+            btnSubmit.setText("Submit");
         } else {
-            btnSubmit.setText("Câu tiếp theo");
+            btnSubmit.setText("Next");
         }
     }
 
@@ -242,7 +242,7 @@ public class ReadingFragment extends Fragment {
 
         int selectedId = radioGroupAnswers.getCheckedRadioButtonId();
         if (selectedId == -1) {
-            Toast.makeText(getContext(), "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Pls choose answer!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -260,9 +260,9 @@ public class ReadingFragment extends Fragment {
 
         if (selectedAnswerText.equals(correctAnswerText)) {
             score++;
-            Toast.makeText(getContext(), "Chính xác!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "Chưa chính xác! Đáp án đúng là: " + correctAnswer, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Incorrect! Correct answer is: " + correctAnswer, Toast.LENGTH_SHORT).show();
         }
 
         if (currentQuestionIndex < questionList.size() - 1) {

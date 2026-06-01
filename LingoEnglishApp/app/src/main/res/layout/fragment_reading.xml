@@ -103,36 +103,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/tvQuestionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Đang tải câu hỏi..."
+                android:text="Loading..."
                 android:textColor="@color/colorTextPrimary"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/radioGroupAnswers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="4dp">
 
-                <RadioButton android:id="@+id/rbA" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:textSize="16sp" />
-                <RadioButton android:id="@+id/rbB" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:textSize="16sp" />
-                <RadioButton android:id="@+id/rbC" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:textSize="16sp" />
-                <RadioButton android:id="@+id/rbD" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="16sp" />
+                <RadioButton android:id="@+id/rbA" android:textColor="@color/black" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" />
+                <RadioButton android:id="@+id/rbB" android:textColor="@color/black" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" />
+                <RadioButton android:id="@+id/rbC" android:textColor="@color/black" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" />
+                <RadioButton android:id="@+id/rbD" android:textColor="@color/black" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" />
             </RadioGroup>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSubmitQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="30dp"
-                android:text="Nộp Bài"
+                android:text="Submit"
                 app:backgroundTint="@color/colorPrimary"
                 app:cornerRadius="12dp" />
         </LinearLayout>

@@ -156,12 +156,12 @@ public class ListeningFragment extends Fragment {
             if (isTranscriptVisible) {
                 tvTranscript.setVisibility(View.GONE);
                 cardThumbnail.setVisibility(View.VISIBLE);
-                btnShowTranscript.setText("Xem phụ đề");
+                btnShowTranscript.setText("Show");
                 isTranscriptVisible = false;
             } else {
                 tvTranscript.setVisibility(View.VISIBLE);
                 cardThumbnail.setVisibility(View.GONE);
-                btnShowTranscript.setText("Ẩn phụ đề");
+                btnShowTranscript.setText("Hide");
                 isTranscriptVisible = true;
             }
         });
@@ -169,7 +169,7 @@ public class ListeningFragment extends Fragment {
         // Xử lý phát / tạm ngưng Audio bằng MediaPlayer cục bộ
         btnPlayPause.setOnClickListener(v -> {
             if (currentLesson == null) {
-                Toast.makeText(getContext(), "Đang tải dữ liệu, vui lòng đợi...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -271,7 +271,7 @@ public class ListeningFragment extends Fragment {
                                 displayQuestion(currentQuestionIndex);
                             }
 
-                            Toast.makeText(getContext(), "Tải bài học thành công!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Done!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(getContext(), "Không tìm thấy bài học!", Toast.LENGTH_SHORT).show();
@@ -290,7 +290,7 @@ public class ListeningFragment extends Fragment {
         Question question = questionList.get(index);
 
         if (tvQuestionText != null) {
-            tvQuestionText.setText("Câu " + (index + 1) + ": " + question.getQuestionText());
+            tvQuestionText.setText("Question " + (index + 1) + ": " + question.getQuestionText());
         }
         if (rbOptionA != null) rbOptionA.setText(question.getOptionA());
         if (rbOptionB != null) rbOptionB.setText(question.getOptionB());
@@ -302,9 +302,9 @@ public class ListeningFragment extends Fragment {
 
         // Nếu là câu cuối cùng, đổi chữ nút bấm thành "Nộp bài"
         if (index == questionList.size() - 1) {
-            btnSubmit.setText("Nộp bài & Hoàn thành");
+            btnSubmit.setText("Submit");
         } else {
-            btnSubmit.setText("Câu tiếp theo");
+            btnSubmit.setText("Next");
         }
     }
 
@@ -375,8 +375,8 @@ public class ListeningFragment extends Fragment {
         // Lưu vào Collection "user_scores"
         db.collection("user_scores")
                 .add(scoreData)
-                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm thành công"))
-                .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
+                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Save successful"))
+                .addOnFailureListener(e -> Log.e("Firestore", "Failed", e));
     }
 
     // Hàm hỗ trợ định dạng mili-giây thành chuỗi phút:giây (00:00)
