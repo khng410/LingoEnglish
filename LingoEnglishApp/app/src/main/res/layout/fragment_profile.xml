@@ -5,78 +5,167 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:orientation="vertical">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="Your profile"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="27sp"
-        android:textStyle="bold" />
-
-    <!-- Thẻ chứa thông tin người dùng -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="8dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:gravity="center_horizontal">
 
-            <!-- Avatar Corgi sinh động -->
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="190dp"
-                android:layout_height="190dp"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/corgi_animation6" />
-
-            <!-- Tên người dùng -->
             <TextView
-                android:id="@+id/tvProfileName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Loading..."
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="20sp"
+                android:layout_marginBottom="24dp"
+                android:text="Profile"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <!-- Email -->
-            <TextView
-                android:id="@+id/tvProfileEmail"
-                android:layout_width="wrap_content"
+            <!-- KHỐI 1: THÔNG TIN CÁ NHÂN -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="email@example.com"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="19sp" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+                    <FrameLayout
+                        android:id="@+id/frameAvatar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottieDefaultAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            app:lottie_rawRes="@raw/corgi_animation6" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardRealAvatar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:cardCornerRadius="50dp"
+                            android:visibility="gone"
+                            app:cardElevation="0dp">
+                            <ImageView
+                                android:id="@+id/imgRealAvatar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="bottom|end"
+                            android:background="@drawable/bg_bottom_sheet"
+                            android:padding="6dp"
+                            android:src="@android:drawable/ic_menu_edit"
+                            app:tint="@color/colorPrimaryDark" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Loading..."
+                        android:textColor="@color/colorTextPrimary"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvProfileEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="email@example.com"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- KHỐI 2: LỊCH SỬ HOẠT ĐỘNG (THÊM MỚI) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:text="Recent activities"
+                android:textColor="@color/colorEducation"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutHistoryContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Chữ Loading tạm thời -->
+                    <TextView
+                        android:id="@+id/tvHistoryLoading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Loading..."
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextSecondary"
+                        android:padding="8dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChangePassword"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="12dp"
+                android:text="Change password"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="16dp"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="24dp"
+                android:text="LOG OUT"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:backgroundTint="#EF5350"
+                app:cornerRadius="16dp" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <!-- Nút Đăng Xuất -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="60dp"
-        android:text="LOG OUT"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:backgroundTint="#EF5350"
-        app:cornerRadius="16dp" />
-
+    </ScrollView>
 </LinearLayout>

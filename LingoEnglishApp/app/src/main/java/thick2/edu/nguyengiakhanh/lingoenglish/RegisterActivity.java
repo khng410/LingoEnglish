@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
         Map<String, Object> userData = new HashMap<>();
         userData.put("display_name", name);
         userData.put("email", email);
-        userData.put("total_xp", 0); // Mới tạo tài khoản thì điểm = 0
         userData.put("created_at", System.currentTimeMillis());
 
         db.collection("users").document(uid)

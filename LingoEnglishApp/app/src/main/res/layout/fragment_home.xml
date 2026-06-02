@@ -37,7 +37,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="#6374D7"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp">
 
@@ -96,7 +96,7 @@
             android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorEducation"
+            app:cardBackgroundColor="#278AD9"
             app:cardCornerRadius="24dp"
             app:cardElevation="6dp">
 
@@ -139,7 +139,7 @@
             android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorTech"
+            app:cardBackgroundColor="#B620D0"
             app:cardCornerRadius="24dp"
             app:cardElevation="6dp">
 
@@ -191,7 +191,7 @@
             android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorTravel"
+            app:cardBackgroundColor="#16DC20"
             app:cardCornerRadius="24dp"
             app:cardElevation="6dp">
 
@@ -234,7 +234,7 @@
             android:layout_height="120dp"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="@color/colorJob"
+            app:cardBackgroundColor="#D32B28"
             app:cardCornerRadius="24dp"
             app:cardElevation="6dp">
 

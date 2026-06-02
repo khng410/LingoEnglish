@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,7 +23,8 @@ public class ComboIntroFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_combo_intro, container, false);
-
+        ImageView btnBack = view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> Navigation.findNavController(v).popBackStack());
         MaterialButton btnStartCombo = view.findViewById(R.id.btnStartCombo);
         TextView tvComboTitle = view.findViewById(R.id.tvComboTitle);
         TextView tvDescription = view.findViewById(R.id.tvDescription);
@@ -36,6 +38,7 @@ public class ComboIntroFragment extends Fragment {
             tvComboTitle.setText("Combo 2 skills");
             tvDescription.setText("Welcome to the 2 skills challenge include Listening and Reading 🌟\n\n TOPIC:" + topicName + "\n\nIn this mode, you will take two consecutive sections. Your score will be added up at the end of the test.\n\n🎧 The first skill will be Listening. Make sure you're in a quiet space and turn up the volume.\n\nReady? GO!");
         }
+
 
         // Xử lý sự kiện bấm BẮT ĐẦU
         btnStartCombo.setOnClickListener(v -> {

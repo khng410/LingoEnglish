@@ -386,7 +386,6 @@ public class ListeningFragment extends Fragment {
     // Hàm lưu điểm đã được thiết kế lại để nhận các tham số linh hoạt
     private void saveScoreToFirestore(String skillName, int finalScore, int totalQuestions) {
         // Lấy thông tin user đang đăng nhập
-        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
         com.google.firebase.auth.FirebaseAuth mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
         com.google.firebase.auth.FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -406,7 +405,7 @@ public class ListeningFragment extends Fragment {
                 scoreData.put("skillName", skillName); // Lưu tên kỹ năng là Listening
                 scoreData.put("correctAnswers", finalScore);
                 scoreData.put("totalQuestions", totalQuestions);
-                scoreData.put("timestamp", instant);
+                scoreData.put("timestamp", System.currentTimeMillis());
 
                 db.collection("user_scores")
                         .add(scoreData)

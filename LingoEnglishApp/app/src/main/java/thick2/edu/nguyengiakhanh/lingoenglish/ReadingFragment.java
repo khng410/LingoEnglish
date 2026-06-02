@@ -128,11 +128,9 @@ public class ReadingFragment extends Fragment {
         miniDictionary.put("algorithm", "Thuật toán");
         miniDictionary.put("automation", "Tự động hóa");
         miniDictionary.put("privacy", "Quyền riêng tư");
-        miniDictionary.put("freelancers", "Người làm việc tự do");
         miniDictionary.put("sustainable", "Bền vững");
         miniDictionary.put("footprint", "Dấu chân (khí thải)");
         miniDictionary.put("preserve", "Bảo tồn");
-        miniDictionary.put("freelance", "Làm việc tự do");
         miniDictionary.put("flexibility", "Sự linh hoạt");
         miniDictionary.put("adaptability", "Khả năng thích nghi");
         miniDictionary.put("blended", "Pha trộn, kết hợp (VD: Blended learning = Học tập kết hợp)");
@@ -325,7 +323,6 @@ public class ReadingFragment extends Fragment {
 
     private void saveScoreToFirestore(String skillName, int finalScore, int totalQuestions) {
         // Lấy thông tin user đang đăng nhập
-        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
         com.google.firebase.auth.FirebaseAuth mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
         com.google.firebase.auth.FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -345,7 +342,7 @@ public class ReadingFragment extends Fragment {
                 scoreData.put("skillName", skillName); // Sẽ là "Reading" hoặc "Combo"
                 scoreData.put("correctAnswers", finalScore);
                 scoreData.put("totalQuestions", totalQuestions);
-                scoreData.put("timestamp", instant);
+                scoreData.put("timestamp", System.currentTimeMillis());
 
                 db.collection("user_scores")
                         .add(scoreData)

@@ -76,7 +76,7 @@
         android:text="REGISTER!"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:backgroundTint="@color/colorSuccess"
+        app:backgroundTint="#51D354"
         app:cornerRadius="16dp" />
 
     <TextView

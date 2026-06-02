@@ -110,8 +110,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Loading..."
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="12sp"
+                android:textColor="@color/colorEducation"
+                android:textSize="11sp"
                 android:textStyle="bold" />
 
             <RadioGroup
