@@ -171,15 +171,15 @@ public class ReadingFragment extends Fragment {
                                 displayQuestion(currentQuestionIndex);
                             }
 
-                            Toast.makeText(getContext(), "Tải bài đọc thành công!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Loading success!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getContext(), "Không tìm thấy bài học!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Fail to load data!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("FirebaseError", "Lỗi tải dữ liệu Firestore", e);
-                    Toast.makeText(getContext(), "Lỗi kết nối mạng!", Toast.LENGTH_SHORT).show();
+                    Log.e("FirebaseError", "Fail to load data on Firebase", e);
+                    Toast.makeText(getContext(), "Connection error", Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -201,7 +201,7 @@ public class ReadingFragment extends Fragment {
                 ClickableSpan clickableSpan = new ClickableSpan() {
                     @Override
                     public void onClick(@NonNull View widget) {
-                        Toast.makeText(getContext(), wordToFind.toUpperCase() + ": " + meaning, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), wordToFind.toUpperCase() + ": " + meaning, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -274,9 +274,6 @@ public class ReadingFragment extends Fragment {
 
         if (selectedAnswerText.equals(correctAnswerText)) {
             score++;
-            Toast.makeText(getContext(), "Correct", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getContext(), "Incorrect! Correct answer is: " + correctAnswer, Toast.LENGTH_SHORT).show();
         }
 
         if (currentQuestionIndex < questionList.size() - 1) {
@@ -300,7 +297,7 @@ public class ReadingFragment extends Fragment {
         int finalScore = score;
         int finalTotal = questionList.size();
         String skillNameDB = "Reading"; // Lưu lên db là Reading
-        String skillNameUI = "Đọc (Reading)"; // Hiện lên giao diện Corgi
+        String skillNameUI = "Reading"; // Hiện lên giao diện Corgi
 
         if (isComboMode) {
             // NẾU LÀ COMBO: Cộng dồn điểm bài Nghe được truyền sang
@@ -311,7 +308,7 @@ public class ReadingFragment extends Fragment {
             finalTotal = questionList.size() + listeningTotal;
 
             skillNameDB = "Combo";
-            skillNameUI = "Combo Nghe & Đọc";
+            skillNameUI = "Combo Listening and Reading";
         }
 
         // LƯU ĐIỂM LÊN FIRESTORE 1 LẦN DUY NHẤT TẠI ĐÂY
@@ -338,7 +335,7 @@ public class ReadingFragment extends Fragment {
             // Truy vấn lấy tên người dùng từ bảng 'users' trước khi lưu điểm
             db.collection("users").document(uid).get().addOnSuccessListener(documentSnapshot -> {
                 String userName = documentSnapshot.getString("display_name");
-                if (userName == null) userName = "Người dùng Lingo";
+                if (userName == null) userName = "Guest";
 
                 Map<String, Object> scoreData = new HashMap<>();
                 scoreData.put("userId", uid);              // Đã thêm UID
@@ -352,8 +349,8 @@ public class ReadingFragment extends Fragment {
 
                 db.collection("user_scores")
                         .add(scoreData)
-                        .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm " + skillName + " thành công"))
-                        .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
+                        .addOnSuccessListener(documentReference -> Log.d("Firestore", "Saved!" + skillName + " thành công"))
+                        .addOnFailureListener(e -> Log.e("Firestore", "Failed to save", e));
             });
         }
     }

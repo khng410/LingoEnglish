@@ -103,7 +103,7 @@ public class LeaderboardFragment extends Fragment {
 
                         // ĐÃ SỬA DÒNG NÀY: Lấy tên người dùng từ Firebase (nếu null thì để ẩn danh)
                         String fetchedName = doc.getString("userName");
-                        record.userName = (fetchedName != null && !fetchedName.isEmpty()) ? fetchedName : "Người dùng ẩn danh";
+                        record.userName = (fetchedName != null && !fetchedName.isEmpty()) ? fetchedName : "Guest";
 
                         scoreList.add(record);
                     }
@@ -173,7 +173,6 @@ public class LeaderboardFragment extends Fragment {
             }
 
             holder.tvUserName.setText(record.userName);
-            holder.tvLessonName.setText(record.lessonTitle);
             holder.tvScore.setText(record.correctAnswers + "/" + record.totalQuestions);
         }
 
@@ -183,13 +182,12 @@ public class LeaderboardFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            TextView tvRank, tvUserName, tvLessonName, tvScore;
+            TextView tvRank, tvUserName, tvScore;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 tvRank = itemView.findViewById(R.id.tvRank);
                 tvUserName = itemView.findViewById(R.id.tvUserName);
-                tvLessonName = itemView.findViewById(R.id.tvLessonName);
                 tvScore = itemView.findViewById(R.id.tvScore);
             }
         }

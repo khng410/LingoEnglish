@@ -237,7 +237,7 @@ public class ListeningFragment extends Fragment {
                     handler.removeCallbacks(updateSeekBarRunnable); // Dừng thanh trượt để đỡ tốn pin
                 }
             } else {
-                Toast.makeText(getContext(), "Không tìm thấy file audio: " + fileName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "File audio not found: " + fileName, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -275,12 +275,12 @@ public class ListeningFragment extends Fragment {
                             Toast.makeText(getContext(), "Done!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(getContext(), "Không tìm thấy bài học!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Fail to load data!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("FirebaseError", "Lỗi tải dữ liệu Firestore", e);
-                    Toast.makeText(getContext(), "Lỗi kết nối mạng!", Toast.LENGTH_SHORT).show();
+                    Log.e("FirebaseError", "Fail to load data on Firebase", e);
+                    Toast.makeText(getContext(), "Connection error", Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -335,9 +335,6 @@ public class ListeningFragment extends Fragment {
         // Kiểm tra xem đáp án có chính xác không
         if (selectedAnswerText.equals(correctAnswerText)) {
             score++;
-            Toast.makeText(getContext(), "Correct!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getContext(), "Incorrect! Correct answer is: " + correctAnswer, Toast.LENGTH_SHORT).show();
         }
 
         // Chuyển sang câu tiếp theo hoặc kết thúc bài kiểm tra
@@ -364,7 +361,7 @@ public class ListeningFragment extends Fragment {
         if (isComboMode) {
             // NẾU LÀ COMBO: KHÔNG LƯU VÀO FIRESTORE LÚC NÀY
             // Chỉ đóng gói điểm Nghe và truyền thẳng sang Bài Đọc
-            Toast.makeText(getContext(), "Đã xong bài Nghe! Đang chuyển sang bài Đọc...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Listening done! Loading...", Toast.LENGTH_SHORT).show();
             bundle.putInt("COMBO_SCORE_LISTENING", score);
             bundle.putInt("COMBO_TOTAL_LISTENING", questionList.size());
 
