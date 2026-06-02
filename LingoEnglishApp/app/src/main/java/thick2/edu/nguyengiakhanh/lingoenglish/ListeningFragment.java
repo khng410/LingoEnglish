@@ -26,6 +26,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -350,22 +351,20 @@ public class ListeningFragment extends Fragment {
     }
 
     // Hiển thị hộp thoại kết quả học tập sử dụng AlertDialog mặc định
-    private void showResultDialog() {
-        saveScoreToFirestore();
 
-        // Đóng gói dữ liệu để chuẩn bị chuyển trang
+    // ĐÃ FIX LOGIC COMBO & FIRESTORE
+    private void showResultDialog() {
         Bundle bundle = new Bundle();
         if (getArguments() != null) {
-            bundle.putAll(getArguments()); // Kế thừa lại các thuộc tính cũ (như TOPIC_ID)
+            bundle.putAll(getArguments());
         }
 
-        // Kiểm tra xem có đang ở chế độ Combo không
         boolean isComboMode = bundle.getBoolean("IS_COMBO_MODE", false);
 
         if (isComboMode) {
-            // NẾU LÀ COMBO: Lưu tạm điểm phần Nghe và chuyển thẳng sang bài ĐỌC
-            Toast.makeText(getContext(), "Hoàn thành bài Nghe! Chuẩn bị sang bài Đọc...", Toast.LENGTH_LONG).show();
-
+            // NẾU LÀ COMBO: KHÔNG LƯU VÀO FIRESTORE LÚC NÀY
+            // Chỉ đóng gói điểm Nghe và truyền thẳng sang Bài Đọc
+            Toast.makeText(getContext(), "Đã xong bài Nghe! Đang chuyển sang bài Đọc...", Toast.LENGTH_LONG).show();
             bundle.putInt("COMBO_SCORE_LISTENING", score);
             bundle.putInt("COMBO_TOTAL_LISTENING", questionList.size());
 
@@ -373,7 +372,9 @@ public class ListeningFragment extends Fragment {
                 Navigation.findNavController(getView()).navigate(R.id.readingFragment, bundle);
             }
         } else {
-            // NẾU ĐI LẺ (SINGLE SKILL): Chuyển về màn hình Kết quả như bình thường
+            // NẾU CHỈ LÀM BÀI NGHE LẺ: Lưu Firestore với chữ "Listening"
+            saveScoreToFirestore("Listening", score, questionList.size());
+
             bundle.putInt("SCORE", score);
             bundle.putInt("TOTAL_QUESTIONS", questionList.size());
             bundle.putString("SKILL_NAME", "Nghe (Listening)");
@@ -384,24 +385,23 @@ public class ListeningFragment extends Fragment {
         }
     }
 
-    // Lưu điểm của người dùng lên Cloud Firestore
-    private void saveScoreToFirestore() {
+    // Hàm lưu điểm đã được thiết kế lại để nhận các tham số linh hoạt
+    private void saveScoreToFirestore(String skillName, int finalScore, int totalQuestions) {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
         Map<String, Object> scoreData = new HashMap<>();
         scoreData.put("topicId", currentLesson.getTopicId());
         scoreData.put("lessonTitle", currentLesson.getTitle());
-        scoreData.put("skillName", "Listening");
-        scoreData.put("correctAnswers", score);
-        scoreData.put("totalQuestions", questionList.size());
-        scoreData.put("timestamp", System.currentTimeMillis());
+        scoreData.put("skillName", skillName); // Lưu tên kỹ năng là Listening
+        scoreData.put("correctAnswers", finalScore);
+        scoreData.put("totalQuestions", totalQuestions);
+        scoreData.put("timestamp", instant);
 
-        // Lưu vào Collection "user_scores"
         db.collection("user_scores")
                 .add(scoreData)
-                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Save successful"))
-                .addOnFailureListener(e -> Log.e("Firestore", "Failed", e));
+                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm Listening thành công"))
+                .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
     }
 
-    // Hàm hỗ trợ định dạng mili-giây thành chuỗi phút:giây (00:00)
     private String formatTime(int ms) {
         int seconds = (ms / 1000) % 60;
         int minutes = (ms / 1000) / 60;
@@ -412,7 +412,7 @@ public class ListeningFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         if (handler != null && updateSeekBarRunnable != null) {
-            handler.removeCallbacks(updateSeekBarRunnable); // Xóa bộ nhớ chạy ngầm khi thoát trang
+            handler.removeCallbacks(updateSeekBarRunnable);
         }
         if (mediaPlayer != null) {
             mediaPlayer.release();

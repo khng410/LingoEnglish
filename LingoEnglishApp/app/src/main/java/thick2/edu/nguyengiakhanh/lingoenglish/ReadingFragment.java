@@ -26,6 +26,7 @@ import androidx.navigation.Navigation;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -124,6 +125,16 @@ public class ReadingFragment extends Fragment {
     // Nạp sẵn một số từ vựng khó và nghĩa của chúng
     private void setupMiniDictionary() {
         miniDictionary = new HashMap<>();
+        miniDictionary.put("algorithm", "Thuật toán");
+        miniDictionary.put("automation", "Tự động hóa");
+        miniDictionary.put("privacy", "Quyền riêng tư");
+        miniDictionary.put("freelancers", "Người làm việc tự do");
+        miniDictionary.put("sustainable", "Bền vững");
+        miniDictionary.put("footprint", "Dấu chân (khí thải)");
+        miniDictionary.put("preserve", "Bảo tồn");
+        miniDictionary.put("freelance", "Làm việc tự do");
+        miniDictionary.put("flexibility", "Sự linh hoạt");
+        miniDictionary.put("adaptability", "Khả năng thích nghi");
         miniDictionary.put("blended", "Pha trộn, kết hợp (VD: Blended learning = Học tập kết hợp)");
         miniDictionary.put("transformed", "Biến đổi, thay đổi hoàn toàn");
         miniDictionary.put("traditional", "Truyền thống");
@@ -277,9 +288,8 @@ public class ReadingFragment extends Fragment {
     }
 
     // Hiển thị hộp thoại kết quả học tập sử dụng AlertDialog mặc định
+    // ĐÃ FIX LOGIC COMBO & FIRESTORE
     private void showResultDialog() {
-        saveScoreToFirestore();
-
         Bundle bundle = new Bundle();
         if (getArguments() != null) {
             bundle.putAll(getArguments());
@@ -287,51 +297,48 @@ public class ReadingFragment extends Fragment {
 
         boolean isComboMode = bundle.getBoolean("IS_COMBO_MODE", false);
 
+        int finalScore = score;
+        int finalTotal = questionList.size();
+        String skillNameDB = "Reading"; // Lưu lên db là Reading
+        String skillNameUI = "Đọc (Reading)"; // Hiện lên giao diện Corgi
+
         if (isComboMode) {
-            // NẾU LÀ COMBO: Lấy điểm bài Nghe cũ + bài Đọc hiện tại để ra tổng điểm
+            // NẾU LÀ COMBO: Cộng dồn điểm bài Nghe được truyền sang
             int listeningScore = bundle.getInt("COMBO_SCORE_LISTENING", 0);
             int listeningTotal = bundle.getInt("COMBO_TOTAL_LISTENING", 0);
 
-            int finalScore = score + listeningScore;
-            int finalTotal = questionList.size() + listeningTotal;
+            finalScore = score + listeningScore;
+            finalTotal = questionList.size() + listeningTotal;
 
-            bundle.putInt("SCORE", finalScore);
-            bundle.putInt("TOTAL_QUESTIONS", finalTotal);
-            bundle.putString("SKILL_NAME", "Combo 2 skills");
-        } else {
-            // NẾU ĐI LẺ: Chỉ tính điểm bài Đọc
-            bundle.putInt("SCORE", score);
-            bundle.putInt("TOTAL_QUESTIONS", questionList.size());
-            bundle.putString("SKILL_NAME", "Reading");
+            skillNameDB = "Combo";
+            skillNameUI = "Combo Nghe & Đọc";
         }
 
-        // Chuyển tới ResultFragment để chú chó Corgi chúc mừng
+        // LƯU ĐIỂM LÊN FIRESTORE 1 LẦN DUY NHẤT TẠI ĐÂY
+        saveScoreToFirestore(skillNameDB, finalScore, finalTotal);
+        // Chuyển dữ liệu lên màn hình Result Corgi
+        bundle.putInt("SCORE", finalScore);
+        bundle.putInt("TOTAL_QUESTIONS", finalTotal);
+        bundle.putString("SKILL_NAME", skillNameUI);
+
         if (getView() != null) {
             Navigation.findNavController(getView()).navigate(R.id.resultFragment, bundle);
         }
     }
 
-    // Lưu điểm của người dùng lên Cloud Firestore
-    private void saveScoreToFirestore() {
+    private void saveScoreToFirestore(String skillName, int finalScore, int totalQuestions) {
+        Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
         Map<String, Object> scoreData = new HashMap<>();
         scoreData.put("topicId", currentLesson.getTopicId());
         scoreData.put("lessonTitle", currentLesson.getTitle());
-        scoreData.put("skillName", "Reading");
-        scoreData.put("correctAnswers", score);
-        scoreData.put("totalQuestions", questionList.size());
-        scoreData.put("timestamp", System.currentTimeMillis());
+        scoreData.put("skillName", skillName); // Sẽ là "Reading" hoặc "Combo"
+        scoreData.put("correctAnswers", finalScore);
+        scoreData.put("totalQuestions", totalQuestions);
+        scoreData.put("timestamp", instant);
 
-        // Lưu vào Collection "user_scores"
         db.collection("user_scores")
                 .add(scoreData)
-                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Save successful"))
-                .addOnFailureListener(e -> Log.e("Firestore", "Failed", e));
-    }
-
-    // Hàm hỗ trợ định dạng mili-giây thành chuỗi phút:giây (00:00)
-    private String formatTime(int ms) {
-        int seconds = (ms / 1000) % 60;
-        int minutes = (ms / 1000) / 60;
-        return String.format("%02d:%02d", minutes, seconds);
+                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm " + skillName + " thành công"))
+                .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
     }
 }

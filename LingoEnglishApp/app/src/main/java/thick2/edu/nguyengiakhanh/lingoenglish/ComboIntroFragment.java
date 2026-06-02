@@ -34,7 +34,7 @@ public class ComboIntroFragment extends Fragment {
 
             // Cập nhật giao diện một chút cho đúng với 2 kỹ năng
             tvComboTitle.setText("Combo 2 skills");
-            tvDescription.setText("Welcome to the 2 skills challenge include Listening and Reading 🌟\n\n" + topicName + "\n\nIn this mode, you will take two consecutive sections: Listening and Reading. Your score will be added up at the end of the test.\n\n🎧 The first skill will be Listening. Make sure you're in a quiet space and turn up the volume.\n\nReady? GO!");
+            tvDescription.setText("Welcome to the 2 skills challenge include Listening and Reading 🌟\n\n TOPIC:" + topicName + "\n\nIn this mode, you will take two consecutive sections. Your score will be added up at the end of the test.\n\n🎧 The first skill will be Listening. Make sure you're in a quiet space and turn up the volume.\n\nReady? GO!");
         }
 
         // Xử lý sự kiện bấm BẮT ĐẦU

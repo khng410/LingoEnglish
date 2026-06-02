@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="2dp">
 
             <TextView
                 android:id="@+id/tvQuestionText"
@@ -118,7 +118,7 @@
                 android:id="@+id/radioGroupAnswers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp">
+                android:layout_marginTop="1dp">
 
                 <RadioButton android:id="@+id/rbA" android:textColor="@color/black" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" />
                 <RadioButton android:id="@+id/rbB" android:textColor="@color/black" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" />
