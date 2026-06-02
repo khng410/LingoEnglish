@@ -314,7 +314,7 @@ public class ListeningFragment extends Fragment {
 
         int selectedId = radioGroupAnswers.getCheckedRadioButtonId();
         if (selectedId == -1) {
-            Toast.makeText(getContext(), "Vui lòng chọn đáp án!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Pls choose answer!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -334,9 +334,9 @@ public class ListeningFragment extends Fragment {
         // Kiểm tra xem đáp án có chính xác không
         if (selectedAnswerText.equals(correctAnswerText)) {
             score++;
-            Toast.makeText(getContext(), "Chính xác!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Correct!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "Chưa chính xác! Đáp án đúng là: " + correctAnswer, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Incorrect! Correct answer is: " + correctAnswer, Toast.LENGTH_SHORT).show();
         }
 
         // Chuyển sang câu tiếp theo hoặc kết thúc bài kiểm tra
@@ -351,16 +351,37 @@ public class ListeningFragment extends Fragment {
 
     // Hiển thị hộp thoại kết quả học tập sử dụng AlertDialog mặc định
     private void showResultDialog() {
-        // Lưu điểm số lên Firestore trước khi chuyển trang
         saveScoreToFirestore();
 
-        // Gói điểm số và tổng số câu hỏi vào Bundle để gửi sang màn hình Kết quả
-        Bundle resultBundle = new Bundle();
-        resultBundle.putInt("SCORE", score);
-        resultBundle.putInt("TOTAL_QUESTIONS", questionList.size());
+        // Đóng gói dữ liệu để chuẩn bị chuyển trang
+        Bundle bundle = new Bundle();
+        if (getArguments() != null) {
+            bundle.putAll(getArguments()); // Kế thừa lại các thuộc tính cũ (như TOPIC_ID)
+        }
 
-        // Chuyển hướng sang ResultFragment
-        Navigation.findNavController(getView()).navigate(R.id.resultFragment, resultBundle);
+        // Kiểm tra xem có đang ở chế độ Combo không
+        boolean isComboMode = bundle.getBoolean("IS_COMBO_MODE", false);
+
+        if (isComboMode) {
+            // NẾU LÀ COMBO: Lưu tạm điểm phần Nghe và chuyển thẳng sang bài ĐỌC
+            Toast.makeText(getContext(), "Hoàn thành bài Nghe! Chuẩn bị sang bài Đọc...", Toast.LENGTH_LONG).show();
+
+            bundle.putInt("COMBO_SCORE_LISTENING", score);
+            bundle.putInt("COMBO_TOTAL_LISTENING", questionList.size());
+
+            if (getView() != null) {
+                Navigation.findNavController(getView()).navigate(R.id.readingFragment, bundle);
+            }
+        } else {
+            // NẾU ĐI LẺ (SINGLE SKILL): Chuyển về màn hình Kết quả như bình thường
+            bundle.putInt("SCORE", score);
+            bundle.putInt("TOTAL_QUESTIONS", questionList.size());
+            bundle.putString("SKILL_NAME", "Nghe (Listening)");
+
+            if (getView() != null) {
+                Navigation.findNavController(getView()).navigate(R.id.resultFragment, bundle);
+            }
+        }
     }
 
     // Lưu điểm của người dùng lên Cloud Firestore
@@ -368,6 +389,7 @@ public class ListeningFragment extends Fragment {
         Map<String, Object> scoreData = new HashMap<>();
         scoreData.put("topicId", currentLesson.getTopicId());
         scoreData.put("lessonTitle", currentLesson.getTitle());
+        scoreData.put("skillName", "Listening");
         scoreData.put("correctAnswers", score);
         scoreData.put("totalQuestions", questionList.size());
         scoreData.put("timestamp", System.currentTimeMillis());

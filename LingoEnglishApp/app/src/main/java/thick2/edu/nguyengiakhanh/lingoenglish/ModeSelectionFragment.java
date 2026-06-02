@@ -42,8 +42,12 @@ public class ModeSelectionFragment extends Fragment {
             showBottomSheet(v);
         });
 
+        // ĐÃ SỬA: Chuyển sang ComboIntroFragment kèm theo dữ liệu Chủ đề
         cardComboSkill.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Sẽ chuyển sang Màn hình Intro", Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putString("TOPIC_ID", topicId);
+            bundle.putString("SELECTED_TOPIC", topicName);
+            Navigation.findNavController(v).navigate(R.id.comboIntroFragment, bundle);
         });
 
         return view;
@@ -56,22 +60,20 @@ public class ModeSelectionFragment extends Fragment {
 
         NavController navController = Navigation.findNavController(parentView);
 
-        // Chuyển sang kỹ năng NGHE
         sheetView.findViewById(R.id.btnListen).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
             Bundle bundle = new Bundle();
             bundle.putString("TOPIC_ID", topicId);
             bundle.putString("SELECTED_TOPIC", topicName);
+            // Điểm khác biệt: Đi lẻ thì không có cờ IS_COMBO_MODE (mặc định là false)
             navController.navigate(R.id.listeningFragment, bundle);
         });
 
-        // ĐÃ FIX: Chuyển sang kỹ năng ĐỌC
         sheetView.findViewById(R.id.btnRead).setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
             Bundle bundle = new Bundle();
             bundle.putString("TOPIC_ID", topicId);
             bundle.putString("SELECTED_TOPIC", topicName);
-            // Gửi dữ liệu và mở màn hình Đọc
             navController.navigate(R.id.readingFragment, bundle);
         });
 

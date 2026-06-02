@@ -49,5 +49,10 @@
         android:name="thick2.edu.nguyengiakhanh.lingoenglish.ReadingFragment"
         android:label="Reading"
         tools:layout="@layout/fragment_reading" />
-
+    <!-- Màn hình Giới thiệu Combo -->
+    <fragment
+        android:id="@+id/comboIntroFragment"
+        android:name="thick2.edu.nguyengiakhanh.lingoenglish.ComboIntroFragment"
+        android:label="Combo Intro"
+        tools:layout="@layout/fragment_combo_intro" />
 </navigation>

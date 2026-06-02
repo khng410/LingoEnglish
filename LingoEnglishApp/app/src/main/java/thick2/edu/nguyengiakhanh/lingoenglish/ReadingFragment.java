@@ -254,9 +254,12 @@ public class ReadingFragment extends Fragment {
         String correctAnswerText = "";
 
         if (correctAnswer.equalsIgnoreCase("A")) correctAnswerText = currentQuestion.getOptionA();
-        else if (correctAnswer.equalsIgnoreCase("B")) correctAnswerText = currentQuestion.getOptionB();
-        else if (correctAnswer.equalsIgnoreCase("C")) correctAnswerText = currentQuestion.getOptionC();
-        else if (correctAnswer.equalsIgnoreCase("D")) correctAnswerText = currentQuestion.getOptionD();
+        else if (correctAnswer.equalsIgnoreCase("B"))
+            correctAnswerText = currentQuestion.getOptionB();
+        else if (correctAnswer.equalsIgnoreCase("C"))
+            correctAnswerText = currentQuestion.getOptionC();
+        else if (correctAnswer.equalsIgnoreCase("D"))
+            correctAnswerText = currentQuestion.getOptionD();
 
         if (selectedAnswerText.equals(correctAnswerText)) {
             score++;
@@ -273,35 +276,62 @@ public class ReadingFragment extends Fragment {
         }
     }
 
-    // Đã thay đổi: Chuyển cảnh sang ResultFragment thay vì hiện AlertDialog
+    // Hiển thị hộp thoại kết quả học tập sử dụng AlertDialog mặc định
     private void showResultDialog() {
-        // Lưu điểm lên Firestore trước khi chuyển trang
         saveScoreToFirestore();
 
-        // Đóng gói dữ liệu điểm số
         Bundle bundle = new Bundle();
-        bundle.putInt("SCORE", score);
-        bundle.putInt("TOTAL", questionList.size());
-        bundle.putString("SKILL_NAME", "Đọc (Reading)");
+        if (getArguments() != null) {
+            bundle.putAll(getArguments());
+        }
 
-        // Chuyển hướng sang màn hình Kết quả (Cần đảm bảo R.id.resultFragment đã có trong nav_graph.xml)
+        boolean isComboMode = bundle.getBoolean("IS_COMBO_MODE", false);
+
+        if (isComboMode) {
+            // NẾU LÀ COMBO: Lấy điểm bài Nghe cũ + bài Đọc hiện tại để ra tổng điểm
+            int listeningScore = bundle.getInt("COMBO_SCORE_LISTENING", 0);
+            int listeningTotal = bundle.getInt("COMBO_TOTAL_LISTENING", 0);
+
+            int finalScore = score + listeningScore;
+            int finalTotal = questionList.size() + listeningTotal;
+
+            bundle.putInt("SCORE", finalScore);
+            bundle.putInt("TOTAL_QUESTIONS", finalTotal);
+            bundle.putString("SKILL_NAME", "Combo 2 skills");
+        } else {
+            // NẾU ĐI LẺ: Chỉ tính điểm bài Đọc
+            bundle.putInt("SCORE", score);
+            bundle.putInt("TOTAL_QUESTIONS", questionList.size());
+            bundle.putString("SKILL_NAME", "Reading");
+        }
+
+        // Chuyển tới ResultFragment để chú chó Corgi chúc mừng
         if (getView() != null) {
             Navigation.findNavController(getView()).navigate(R.id.resultFragment, bundle);
         }
     }
 
+    // Lưu điểm của người dùng lên Cloud Firestore
     private void saveScoreToFirestore() {
         Map<String, Object> scoreData = new HashMap<>();
         scoreData.put("topicId", currentLesson.getTopicId());
         scoreData.put("lessonTitle", currentLesson.getTitle());
-        scoreData.put("skill", "READING");
+        scoreData.put("skillName", "Reading");
         scoreData.put("correctAnswers", score);
         scoreData.put("totalQuestions", questionList.size());
         scoreData.put("timestamp", System.currentTimeMillis());
 
+        // Lưu vào Collection "user_scores"
         db.collection("user_scores")
                 .add(scoreData)
-                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm bài đọc thành công"))
-                .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
+                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Save successful"))
+                .addOnFailureListener(e -> Log.e("Firestore", "Failed", e));
+    }
+
+    // Hàm hỗ trợ định dạng mili-giây thành chuỗi phút:giây (00:00)
+    private String formatTime(int ms) {
+        int seconds = (ms / 1000) % 60;
+        int minutes = (ms / 1000) / 60;
+        return String.format("%02d:%02d", minutes, seconds);
     }
 }

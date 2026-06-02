@@ -21,7 +21,6 @@ public class ResultFragment extends Fragment {
 
         TextView tvScoreFraction = view.findViewById(R.id.tvScoreFraction);
         TextView tvScoreFeedback = view.findViewById(R.id.tvScoreFeedback);
-        TextView tvXpEarned = view.findViewById(R.id.tvXpEarned);
         Button btnFinish = view.findViewById(R.id.btnFinish);
 
         // Nhận dữ liệu điểm số từ màn hình trước gửi sang
@@ -35,23 +34,16 @@ public class ResultFragment extends Fragment {
             // Hiển thị điểm số (Ví dụ: 8/15)
             tvScoreFraction.setText(score + "/" + total);
 
-            // Logic tính XP thưởng và lời nhận xét dựa trên điểm số
-            int xp = 0;
+            // Logic đưa ra lời nhận xét dựa trên điểm số
             if (percentage == 1.0f) {
-                tvScoreFeedback.setText("Hoàn hảo! Bạn không sai câu nào.");
-                xp = 50;
+                tvScoreFeedback.setText("Perfect!");
             } else if (percentage >= 0.8f) {
-                tvScoreFeedback.setText("Rất tốt! Chỉ một chút nữa là hoàn hảo.");
-                xp = 40;
+                tvScoreFeedback.setText("Great job! Keep it up!");
             } else if (percentage >= 0.5f) {
-                tvScoreFeedback.setText("Khá tốt, nhưng bạn vẫn cần ôn tập thêm nhé.");
-                xp = 20;
+                tvScoreFeedback.setText("Not bad, but you can do better!");
             } else {
-                tvScoreFeedback.setText("Đừng buồn, hãy nghe lại nhiều lần để quen tai hơn!");
-                xp = 10;
+                tvScoreFeedback.setText("You can do better next time!");
             }
-
-            tvXpEarned.setText("+ " + xp + " XP");
         }
 
         // Xử lý nút Tiếp tục (Quay về Trang chủ)

@@ -135,10 +135,10 @@
                     android:id="@+id/btnSubmitQuiz"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-
+                    android:textSize="10sp"
                     android:text="Submit"
                     app:cornerRadius="12dp"
-                    app:backgroundTint="@color/colorSuccess" />
+                    app:backgroundTint="#E0B7B4" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
