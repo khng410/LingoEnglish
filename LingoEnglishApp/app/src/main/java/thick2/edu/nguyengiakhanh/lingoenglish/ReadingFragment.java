@@ -327,18 +327,34 @@ public class ReadingFragment extends Fragment {
     }
 
     private void saveScoreToFirestore(String skillName, int finalScore, int totalQuestions) {
+        // Lấy thông tin user đang đăng nhập
         Instant instant = Instant.ofEpochMilli(System.currentTimeMillis());
-        Map<String, Object> scoreData = new HashMap<>();
-        scoreData.put("topicId", currentLesson.getTopicId());
-        scoreData.put("lessonTitle", currentLesson.getTitle());
-        scoreData.put("skillName", skillName); // Sẽ là "Reading" hoặc "Combo"
-        scoreData.put("correctAnswers", finalScore);
-        scoreData.put("totalQuestions", totalQuestions);
-        scoreData.put("timestamp", instant);
+        com.google.firebase.auth.FirebaseAuth mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
+        com.google.firebase.auth.FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        db.collection("user_scores")
-                .add(scoreData)
-                .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm " + skillName + " thành công"))
-                .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            // Truy vấn lấy tên người dùng từ bảng 'users' trước khi lưu điểm
+            db.collection("users").document(uid).get().addOnSuccessListener(documentSnapshot -> {
+                String userName = documentSnapshot.getString("display_name");
+                if (userName == null) userName = "Người dùng Lingo";
+
+                Map<String, Object> scoreData = new HashMap<>();
+                scoreData.put("userId", uid);              // Đã thêm UID
+                scoreData.put("userName", userName);        // Đã thêm Tên người dùng
+                scoreData.put("topicId", currentLesson.getTopicId());
+                scoreData.put("lessonTitle", currentLesson.getTitle());
+                scoreData.put("skillName", skillName); // Sẽ là "Reading" hoặc "Combo"
+                scoreData.put("correctAnswers", finalScore);
+                scoreData.put("totalQuestions", totalQuestions);
+                scoreData.put("timestamp", instant);
+
+                db.collection("user_scores")
+                        .add(scoreData)
+                        .addOnSuccessListener(documentReference -> Log.d("Firestore", "Lưu điểm " + skillName + " thành công"))
+                        .addOnFailureListener(e -> Log.e("Firestore", "Lưu điểm thất bại", e));
+            });
+        }
     }
 }
