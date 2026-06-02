@@ -2,12 +2,15 @@ package thick2.edu.nguyengiakhanh.lingoenglish;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Nút Quên mật khẩu
-        tvForgotPassword.setOnClickListener(v -> resetPassword());
+        tvForgotPassword.setOnClickListener(v -> showResetPasswordDialog());
     }
 
     private void loginUser() {
@@ -75,22 +78,51 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void resetPassword() {
-        String email = edtEmail.getText().toString().trim();
+    // Hiển thị Hộp thoại yêu cầu nhập Email để khôi phục mật khẩu
+    private void showResetPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+        builder.setMessage("Pls enter your email to receive reset link.");
 
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Pls enter email to reset password!", Toast.LENGTH_SHORT).show();
-            edtEmail.requestFocus();
-            return;
-        }
+        // Tạo ô nhập liệu (EditText) bằng code Java thay vì XML để tiết kiệm file
+        final EditText inputEmail = new EditText(this);
+        inputEmail.setHint("Enter your email");
+        inputEmail.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 
-        // Gọi hàm gửi email đặt lại mật khẩu của Firebase
+        // Canh lề cho ô nhập liệu đẹp hơn
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(60, 20, 60, 0); // Trái, Trên, Phải, Dưới
+        layout.addView(inputEmail);
+        builder.setView(layout);
+
+        // Nút Gửi
+        builder.setPositiveButton("Send Email", (dialog, which) -> {
+            String email = inputEmail.getText().toString().trim();
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(LoginActivity.this, "Pls enter Email!", Toast.LENGTH_SHORT).show();
+            } else {
+                sendResetEmail(email);
+            }
+        });
+
+        // Nút Hủy
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+        // Hiển thị Hộp thoại
+        builder.show();
+    }
+
+    // Gửi yêu cầu lên Firebase
+    private void sendResetEmail(String email) {
+        Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show();
+
         mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Email was sent!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Email was sent! Please check your inbox.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(LoginActivity.this, "Error! Try again later.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Fail to send email!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
