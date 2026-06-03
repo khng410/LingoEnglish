@@ -96,7 +96,7 @@ public class ProfileFragment extends Fragment {
         // Xử lý nút Đăng xuất
         btnLogout.setOnClickListener(v -> {
             mAuth.signOut();
-            Toast.makeText(getContext(), "Đã đăng xuất!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Logged out", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
@@ -134,8 +134,8 @@ public class ProfileFragment extends Fragment {
                         }
                     })
                     .addOnFailureListener(e -> {
-                        Log.e("Profile", "Lỗi tải thông tin user", e);
-                        Toast.makeText(getContext(), "Lỗi tải thông tin!", Toast.LENGTH_SHORT).show();
+                        Log.e("Profile", "Error loading user profile", e);
+                        Toast.makeText(getContext(), "Error loading data", Toast.LENGTH_SHORT).show();
                     });
 
             // Gọi hàm tải lịch sử
@@ -156,7 +156,7 @@ public class ProfileFragment extends Fragment {
 
                     if (queryDocumentSnapshots.isEmpty()) {
                         TextView tvEmpty = new TextView(getContext());
-                        tvEmpty.setText("Bạn chưa hoàn thành bài học nào.");
+                        tvEmpty.setText("Error!");
                         layoutHistoryContainer.addView(tvEmpty);
                         return;
                     }
@@ -186,7 +186,7 @@ public class ProfileFragment extends Fragment {
                         // Lấy thời gian an toàn
                         long timestamp = getSafeTimestamp(doc);
 
-                        String timeString = (timestamp != 0L) ? sdf.format(new Date(timestamp)) : "Không rõ";
+                        String timeString = (timestamp != 0L) ? sdf.format(new Date(timestamp)) : "Don't know";
                         String scoreString = (correct != null && total != null) ? correct + "/" + total : "0/0";
 
                         // Nạp giao diện item_recent_history vào
@@ -204,7 +204,7 @@ public class ProfileFragment extends Fragment {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    tvHistoryLoading.setText("Không thể tải lịch sử.");
+                    tvHistoryLoading.setText("Error");
                 });
     }
 
@@ -230,10 +230,10 @@ public class ProfileFragment extends Fragment {
     // ----------------------------------------------------
     private void showChangePasswordDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Đổi Mật Khẩu");
+        builder.setTitle("Change password");
 
         final EditText inputPass = new EditText(requireContext());
-        inputPass.setHint("Nhập mật khẩu mới (ít nhất 6 ký tự)");
+        inputPass.setHint("Change password at least 6 characters");
         inputPass.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         LinearLayout layout = new LinearLayout(requireContext());
@@ -242,27 +242,27 @@ public class ProfileFragment extends Fragment {
         layout.addView(inputPass);
         builder.setView(layout);
 
-        builder.setPositiveButton("Cập nhật", (dialog, which) -> {
+        builder.setPositiveButton("Update", (dialog, which) -> {
             String newPassword = inputPass.getText().toString().trim();
             if (newPassword.length() >= 6) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(getContext(), "Đang cập nhật...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Updating...", Toast.LENGTH_SHORT).show();
                     user.updatePassword(newPassword).addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Đổi mật khẩu thành công!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Done!", Toast.LENGTH_LONG).show();
                         } else {
                             // Lỗi bảo mật: Nếu user đăng nhập quá lâu, Firebase sẽ từ chối đổi pass trực tiếp
-                            Toast.makeText(getContext(), "Lỗi! Bạn cần Đăng xuất và Đăng nhập lại để thực hiện đổi mật khẩu.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
             } else {
-                Toast.makeText(getContext(), "Mật khẩu quá ngắn!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Too short!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setNegativeButton("Hủy", (dialog, which) -> dialog.cancel());
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
         builder.show();
     }
 
@@ -288,19 +288,19 @@ public class ProfileFragment extends Fragment {
             // Lưu chuỗi Text này lên Firestore
             FirebaseUser user = mAuth.getCurrentUser();
             if (user != null) {
-                Toast.makeText(getContext(), "Đang cập nhật ảnh đại diện...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
                 db.collection("users").document(user.getUid())
                         .update("avatar_base64", base64Image)
                         .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(getContext(), "Đổi ảnh đại diện thành công!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
                             displayBase64Avatar(base64Image); // Hiển thị ngay lên màn hình
                         })
-                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Lỗi khi lưu ảnh!", Toast.LENGTH_SHORT).show());
+                        .addOnFailureListener(e -> Toast.makeText(getContext(), "Error!", Toast.LENGTH_SHORT).show());
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "Lỗi xử lý ảnh!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
         }
     }
 

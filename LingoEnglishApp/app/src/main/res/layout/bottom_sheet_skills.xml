@@ -49,13 +49,13 @@
             android:layout_height="100dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:backgroundTint="#34E239"
+            android:backgroundTint="#427DEB"
             android:text="Listening"
             android:textSize="14sp"
             app:cornerRadius="16dp"
-            android:textColor="#C71111"
+            android:textColor="#DED8D8"
             app:iconGravity="top"
-            app:strokeColor="#29B6F6"
+            app:strokeColor="#2781C8"
             app:strokeWidth="2dp" />
 
         <!-- Nút Reading -->
@@ -68,11 +68,11 @@
             android:layout_weight="1"
             android:text="Reading"
             android:textSize="14sp"
-            android:textColor="@color/colorPrimaryDark"
-            android:backgroundTint="#FA6D9C"
+            android:textColor="@color/white"
+            android:backgroundTint="#E60A52"
             app:cornerRadius="16dp"
             app:iconGravity="top"
-            app:strokeColor="#66BB6A"
+            app:strokeColor="#ED5E8E"
             app:strokeWidth="2dp" />
     </LinearLayout>
 
