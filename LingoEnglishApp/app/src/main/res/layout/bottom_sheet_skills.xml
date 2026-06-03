@@ -53,7 +53,7 @@
             android:text="Listening"
             android:textSize="14sp"
             app:cornerRadius="16dp"
-            android:textColor="#DED8D8"
+            android:textColor="@color/white"
             app:iconGravity="top"
             app:strokeColor="#2781C8"
             app:strokeWidth="2dp" />

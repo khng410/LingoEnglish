@@ -150,7 +150,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="#60BBE4"
+        app:cardBackgroundColor="@color/colorBackground"
         app:cardCornerRadius="24dp"
         app:cardElevation="12dp"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -178,10 +178,10 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView android:id="@+id/btnRewind" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="24dp" android:src="@android:drawable/ic_media_rew" app:tint="@color/colorAccent" />
+                <ImageView android:id="@+id/btnRewind" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginEnd="24dp" android:src="@android:drawable/ic_media_rew" app:tint="#C851DC" />
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnPlayPause" android:layout_width="52dp" android:layout_height="50dp" android:layout_marginVertical="8dp" android:src="@android:drawable/ic_media_play" app:backgroundTint="#9C27B0" app:tint="@color/colorBackground" />
-                <ImageView android:id="@+id/btnForward" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginStart="24dp" android:src="@android:drawable/ic_media_ff" app:tint="@color/colorAccent" />
+                    android:id="@+id/btnPlayPause" android:layout_width="52dp" android:layout_height="50dp" android:layout_marginVertical="8dp" android:src="@android:drawable/ic_media_play" app:backgroundTint="#C851DC" app:tint="@color/colorBackground" />
+                <ImageView android:id="@+id/btnForward" android:layout_width="40dp" android:layout_height="40dp" android:layout_marginStart="24dp" android:src="@android:drawable/ic_media_ff" app:tint="#C851DC" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -156,7 +156,7 @@ public class ProfileFragment extends Fragment {
 
                     if (queryDocumentSnapshots.isEmpty()) {
                         TextView tvEmpty = new TextView(getContext());
-                        tvEmpty.setText("Error!");
+                        tvEmpty.setText("No data yet, pls take a test!");
                         layoutHistoryContainer.addView(tvEmpty);
                         return;
                     }
@@ -204,7 +204,7 @@ public class ProfileFragment extends Fragment {
                     }
                 })
                 .addOnFailureListener(e -> {
-                    tvHistoryLoading.setText("Error");
+                    tvHistoryLoading.setText("No data yet");
                 });
     }
 
@@ -278,8 +278,8 @@ public class ProfileFragment extends Fragment {
             Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            // Nén chất lượng ảnh xuống 70%
-            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+            // Nén chất lượng ảnh xuống 50%
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
             byte[] imageBytes = baos.toByteArray();
 
             // Chuyển mảng byte thành chuỗi Text
