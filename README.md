@@ -1,25 +1,39 @@
 # Màn hình chờ của ứng dụng
    
-   ![Màn hình 1](LingoEnglishApp/app/src/main/res/drawable/loading_screen.png)
+  <img src="LingoEnglishApp/app/src/main/res/drawable/loading_screen.png" width="250" />
    
 # Màn hình chính
  
- ![Màn hình 2](LingoEnglishApp/app/src/main/res/drawable/home_page.png)
+ <img src="LingoEnglishApp/app/src/main/res/drawable/no1.jpg" width="250" />
 
-# Màn hình khi chọn 1 trong 4 chủ đề
+# Màn hình khi chọn 1 trong 4 chủ đề (Education, Technology, Jobs, Travel)
 
+<img src="LingoEnglishApp/app/src/main/res/drawable/choose_type_of_practice.jpg" width="250" />
 
- ![Màn hình 3](LingoEnglishApp/app/src/main/res/drawable/topic_technology.png)
- ![Màn hình 4](LingoEnglishApp/app/src/main/res/drawable/topic_job.png)
- ![Màn hình 5](LingoEnglishApp/app/src/main/res/drawable/topic_travel.png)
- ![Màn hình 6](LingoEnglishApp/app/src/main/res/drawable/topic_education.png)
+# Màn hình lựa chọn luyện tập 1 kĩ năng Listening hoặc Reading
 
-
-    
-# Màn hình lựa chọn luyện tập 1 kĩ năng hoặc 4 kĩ năng
-
-![Màn hình 7](LingoEnglishApp/app/src/main/res/drawable/one_skill_or_4_skill.png)
+<img src="LingoEnglishApp/app/src/main/res/drawable/choose_a_skill_to_practice.jpg" width="250" />
    
-# Màn hình khi chọn luyện tập kĩ năng Nghe (Listening)
+# Màn hình khi chọn luyện tập kĩ năng Listening (Skip/Back 10s audio)
 
-![Màn hình 8](LingoEnglishApp/app/src/main/res/drawable/screen_to_practice_listening.png)
+<img src="LingoEnglishApp/app/src/main/res/drawable/listening_screen_test.jpg" width="250" />
+
+# Màn hình khi chọn luyện tập kĩ năng Reading (Tăng/giảm kích thước Transcript)
+
+<img src="LingoEnglishApp/app/src/main/res/drawable/minimize_transcript_size.jpg" width="250" />  <img src="LingoEnglishApp/app/src/main/res/drawable/maximize_transcript_size.jpg" width="250" />
+
+# Màn hình kết quả sau khi chọn luyện tập 1 kĩ năng Listening hoặc Reading
+
+<img src="LingoEnglishApp/app/src/main/res/drawable/aft_done_one_skill.jpg" width="250" />
+
+# Màn hình luyện tập combo 2 kĩ năng Listening và Reading liên tục
+ 
+ <img src="LingoEnglishApp/app/src/main/res/drawable/intro_combo_skills.jpg" width="250" />
+
+# Màn hình khi chọn 1 trong 4 chủ đề (Education, Technology, Jobs, Travel)
+
+<img src="" width="250" />
+
+# Màn hình lựa chọn luyện tập 1 kĩ năng Listening hoặc Reading
+
+<img src="" width="250" />
