@@ -59,6 +59,9 @@
 <img src="LingoEnglishApp/app/src/main/res/drawable/change_password_at_prf_screen.jpg" width="250" />"
 
 # Lưu trữ Firestore gồm listening_lessons, reading_lessons, users, và user_scores
-<img src="LingoEnglishApp/app/src/main/res/drawable/listening_lesson.jpg" width="250" /> <img src="LingoEnglishApp/app/src/main/res/drawable/reading_lessons.jpg" width="250" /> 
+<img src="LingoEnglishApp/app/src/main/res/drawable/listening_lesson.jpg" width="500" /> <img src="LingoEnglishApp/app/src/main/res/drawable/reading_lessons.jpg" width="500" /> 
 
-<img src="LingoEnglishApp/app/src/main/res/drawable/user_profile.jpg" width="250" /> <img src="LingoEnglishApp/app/src/main/res/drawable/usr_score.jpg" width="250" />
+<img src="LingoEnglishApp/app/src/main/res/drawable/user_profile.jpg" width="500" /> <img src="LingoEnglishApp/app/src/main/res/drawable/usr_score.jpg" width="500" />
+
+# Firebase Authentication
+<img src="LingoEnglishApp/app/src/main/res/drawable/fb_authen.jpg" width="1000" />"
