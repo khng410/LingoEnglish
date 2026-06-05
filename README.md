@@ -1,3 +1,5 @@
+# Link video demo của sản phẩm: https://drive.google.com/file/d/1vmbIGMrds4MNJCbkWYGGsi7uxavR46kw/view
+
 # Logo chi tiết của ứng dụng
 <img src="LingoEnglishApp/app/src/main/res/drawable/app_logo.jpg" width="250" />  <img src="LingoEnglishApp/app/src/main/res/drawable/app_logo_on_device.jpg" width="250" />
 
